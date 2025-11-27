@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom'; // Added Link and useNavigate
 import api from "../services/api";
 import { Loader } from 'lucide-react';
 
 const LoginPage = ({ onLogin }) => {
-  const [isRegistering, setIsRegistering] = useState(false);
-  const [formData, setFormData] = useState({ username: '', password: '' });
+  // We removed isRegistering because Register is a separate page now
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,20 +18,16 @@ const LoginPage = ({ onLogin }) => {
     setError('');
     setIsLoading(true);
 
-    const endpoint = isRegistering ? '/register' : '/login';
-
     try {
-      const res = await api.post(endpoint, formData);
+      // Always point to Login. Registration is handled on a different page.
+      const res = await api.post('/auth/login', formData);
 
-      if (isRegistering) {
-        alert('Registration successful! Please log in.');
-        setIsRegistering(false);
-      } else {
-        localStorage.setItem('token', res.data.token);
-        onLogin(res.data.token); // Navigate or update UI
-      }
+      localStorage.setItem('token', res.data.token);
+      onLogin(res.data.token); 
+      navigate('/'); // Redirect to Home after login
+      
     } catch (err) {
-      setError(err.response?.data?.error || 'Server error occurred.');
+      setError(err.response?.data?.message || 'Invalid Email or Password');
     } finally {
       setIsLoading(false);
     }
@@ -38,10 +36,10 @@ const LoginPage = ({ onLogin }) => {
   return (
     <div className="login-container">
       <div className="login-box">
-        <h2>{isRegistering ? 'Create Account' : 'Welcome Back'}</h2>
+        <h2>Welcome Back</h2>
 
         {isLoading && !error && (
-          <p style={{ fontSize: '0.8rem', color: '#666' }}>
+          <p style={{ fontSize: '0.8rem', color: '#666', textAlign: 'center' }}>
             Connecting to server...
           </p>
         )}
@@ -50,11 +48,13 @@ const LoginPage = ({ onLogin }) => {
 
         <form onSubmit={handleSubmit}>
           <input
-            name="username"
-            placeholder="Username"
+            type="email" 
+            name="email"
+            placeholder="Email Address"
             onChange={handleChange}
             required
             disabled={isLoading}
+            autoComplete="username"
           />
           <input
             type="password"
@@ -63,6 +63,7 @@ const LoginPage = ({ onLogin }) => {
             onChange={handleChange}
             required
             disabled={isLoading}
+            autoComplete="current-password"
           />
 
           <button type="submit" disabled={isLoading}>
@@ -71,24 +72,19 @@ const LoginPage = ({ onLogin }) => {
                 <Loader className="spin" size={18} />
                 Please Wait...
               </div>
-            ) : isRegistering ? (
-              'Sign Up'
             ) : (
               'Log In'
             )}
           </button>
         </form>
 
-        {!isLoading && (
-          <p
-            onClick={() => setIsRegistering(!isRegistering)}
-            className="toggle-link"
-          >
-            {isRegistering
-              ? 'Already have an account? Log In'
-              : "Don't have an account? Sign Up"}
-          </p>
-        )}
+        <div className="toggle-link">
+          <p>Don't have an account?</p>
+          {/* This now links to the dedicated Register Page */}
+          <Link to="/register" style={{ color: '#2563eb', fontWeight: 'bold' }}>
+            Create an Organization
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -51,6 +51,26 @@ const Reports = () => {
   // Helper: Format Date
   const formatDate = (dateString) => new Date(dateString).toLocaleString();
 
+  // 2. NEW HELPER: Format the JSON details into readable text
+  const formatMeta = (meta) => {
+    if (!meta || Object.keys(meta).length === 0) return '-';
+
+    return Object.entries(meta).map(([key, value]) => {
+        // Customize specific keys for better readability
+        if (key === 'orgName') return `Organization: ${value}`;
+        if (key === 'employeeId') return `Employee ID: ${value}`;
+        if (key === 'teamId') return `Team ID: ${value}`;
+        if (key === 'name') return `Name: ${value}`;
+        
+        // Don't display complex object trees (like "changes" in update logs) to keep it clean
+        if (typeof value === 'object' && value !== null) return 'Updated Details';
+
+        // Fallback: Convert camelCase to Title Case (e.g., "firstName" -> "First Name")
+        const readableKey = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+        return `${readableKey}: ${value}`;
+    }).join(', ');
+  };
+
   // Helper: Badge Colors
   const getBadgeColor = (action) => {
     if (action.includes('create')) return 'green';
@@ -122,8 +142,9 @@ const Reports = () => {
                                     {log.action.replace(/_/g, ' ').toUpperCase()}
                                 </span>
                             </td>
-                            <td style={{ fontSize: '0.85rem', color: '#555' }}>
-                                {log.meta ? JSON.stringify(log.meta) : '-'}
+                            {/* UPDATED THIS CELL */}
+                            <td style={{ fontSize: '0.9rem', color: '#333' }}>
+                                {formatMeta(log.meta)}
                             </td>
                         </tr>
                     )) : (

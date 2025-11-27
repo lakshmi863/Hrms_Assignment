@@ -9,8 +9,8 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* 2. Make sure <App /> is wrapped by <BrowserRouter> */}
-    <BrowserRouter>
+    {/* ADD THE "future" PROP HERE: */}
+    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <App />
     </BrowserRouter>
   </React.StrictMode>

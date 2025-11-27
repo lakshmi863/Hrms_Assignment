@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  # 1. Database
+  db:
+    image: postgres:15
+    container_name: hrms_postgres
+    restart: always   # <--- ADDED
+    environment:
+      POSTGRES_USER: lakshmi
+      POSTGRES_PASSWORD: lakshmi
+      POSTGRES_DB: hrms_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - hrms-network
+
+  # 2. Backend
+  backend:
+    build: ./Backend
+    container_name: hrms_backend
+    restart: always   # <--- IMPORTANT: Retries if DB isn't ready yet
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      DB_HOST: db
+      DB_USER: lakshmi
+      DB_PASS: lakshmi
+      DB_NAME: hrms_db
+      JWT_SECRET: mykey
+    depends_on:
+      - db
+    networks:
+      - hrms-network
+
+  # 3. Frontend
+  frontend:
+    build: ./Frontend
+    container_name: hrms_frontend
+    restart: always   # <--- ADDED
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_BASE_URL: http://localhost:5000/api
+    depends_on:
+      - backend
+    volumes:
+      - ./Frontend:/app
+      - /app/node_modules
+    networks:
+      - hrms-network
+
+volumes:
+  pgdata:
+
+networks:
+  hrms-network:
+    driver: bridge

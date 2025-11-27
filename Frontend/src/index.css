@@ -1,0 +1,750 @@
+/* === 1. GLOBAL RESET & BODY STYLES === */
+/* This reset is the key to removing the unwanted space */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  /* Light gray background for the entire page */
+  background-color: #eef2f5; 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* === 2. LAYOUT CONTAINERS === */
+/* Use this wrapper for pages with the navbar (Employees, Teams) */
+.main-layout {
+  max-width: 960px;
+  margin: 2rem auto; /* Centers the content and adds space from top/bottom */
+  padding: 0 1rem;   /* Adds space on the sides for smaller screens */
+}
+
+/* Use this wrapper for the Login/Register pages to center the form */
+.auth-layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+
+/* === 3. NAVBAR COMPONENT === */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.navbar .logo a {
+  display: flex; /* This helps align the logo image vertically */
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffff;
+  text-decoration: none;
+}
+
+/* New style for the logo image */
+.navbar .logo img {
+  height: 40px; /* Adjust the height of your logo as needed */
+  width: auto;  /* Maintains the aspect ratio */
+  margin-right: 10px;
+  color: '#fff' /* Adds space between the logo and any text if you have it */
+}
+
+.navbar .links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.navbar .links a {
+  text-decoration: none;
+  color: #4a5568;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.navbar .links a.active {
+  color: #0d6efd; /* Blue color for the active link */
+}
+
+.navbar .logout-btn {
+  padding: 8px 16px;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+/* === 4. DASHBOARD & CONTENT CARD === */
+.content-card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-top: 1.5rem; /* Space between navbar and dashboard */
+}
+
+.content-card h2 {
+  font-size: 1.75rem;
+  color: #1a202c;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #dee2e6;
+  margin-bottom: 1.5rem;
+}
+
+.content-card h3 {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #343a40;
+}
+
+
+/* === 5. EMPLOYEE CARD (inside Dashboard) === */
+.employee-card {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.employee-card p {
+  margin-bottom: 0.5rem;
+  color: #495057;
+}
+.employee-card p strong {
+  color: #1a202c;
+}
+
+.employee-card .actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 10px;
+}
+
+
+/* === 6. REUSABLE BUTTONS === */
+.btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  font-size: 1rem;
+}
+.btn:hover {
+  opacity: 0.85;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.form-container {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  margin-top: 1.5rem;  /* Space above the form */
+  margin-bottom: 2rem; /* Space below the form */
+}
+
+.form-container h3 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  font-size: 1.25rem;
+  color: #343a40;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #495057;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+.form-error {
+  color: #dc3545;
+  background-color: #f8d7da;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+
+/* === 8. TEAMS PAGE STYLING === */
+
+/* A generic grid for any card-based layout */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.team-card {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.team-card h4 {
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #1a202c;
+}
+
+.team-card p {
+  color: #6c757d;
+  margin-bottom: 1.5rem;
+  flex-grow: 1; /* Pushes assignment controls to the bottom */
+}
+
+.team-card h5 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  color: #495057;
+}
+
+/* List of assigned members */
+.member-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.member-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #dee2e6;
+}
+.member-list li:last-child {
+  border-bottom: none;
+}
+
+/* Dropdown select styling */
+.form-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+/* A smaller button variant */
+.btn-sm {
+  padding: 4px 8px;
+  font-size: 0.8rem;
+}
+
+
+.home-hero-container {
+  display: flex;
+  align-items: center; /* Vertically center */
+  justify-content: center; /* Horizontally center */
+  
+  /* Make it fill the viewport below the navbar (assuming navbar is ~65px tall) */
+  height: calc(100vh - 65px); 
+  
+  /* Background image settings */
+  background-size: cover;
+  background-position: center;
+
+  position: relative; /* Required for the overlay */
+  text-align: center;
+  color: #ffffff; /* All text inside will be white */
+}
+
+/* Dark, semi-transparent overlay to make text readable */
+.home-hero-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 20, 40, 0.6); /* Dark blue overlay */
+}
+
+/* Container for the text content */
+.hero-content {
+  position: relative; /* Places the content above the overlay */
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem; /* Large, bold title */
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Adds depth to the text */
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* Style for the call-to-action button */
+.hero-content .btn {
+  font-size: 1.1rem;
+  padding: 12px 24px;
+}
+
+
+.sidebar {
+  /* Sizing and Position */
+  width: 260px; /* A fixed, generous width */
+  flex-shrink: 0; /* Prevents the sidebar from shrinking when the window is narrow */
+  
+  /* Appearance */
+  background-color: #2c3e50; /* A professional, dark slate blue */
+  color: #ecf0f1; /* Off-white text for high contrast */
+  
+  /* Flexbox layout to structure the header and nav links vertically */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header section containing the logo and platform name */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Space between the logo and the text */
+  padding: 1.5rem; /* Ample padding around the header content */
+  margin-bottom: 1.5rem; /* Space between the header and the first nav link */
+  border-bottom: 1px solid #34495e; /* A subtle separator line */
+}
+
+.sidebar-header img {
+  height: 35px; /* Control the size of your logo */
+  width: auto;
+}
+
+.sidebar-header h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* The list that holds all the navigation links */
+.sidebar-nav {
+  list-style: none; /* Removes default bullet points */
+}
+
+/* Styling for each individual navigation link (<a> tag) */
+.sidebar-nav a {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 1rem 1.5rem;
+  
+  /* Appearance & Typography */
+  color: #bdc3c7; /* A lighter, softer grey for inactive links */
+  text-decoration: none;
+  font-weight: 500;
+
+  /* This is the placeholder for the active link indicator */
+  border-left: 4px solid transparent; 
+  
+  /* Smooth transition for hover effects */
+  transition: all 0.2s ease-in-out;
+}
+
+/* Style for when a user hovers over a link */
+.sidebar-nav a:hover {
+  background-color: #34495e; /* A slightly lighter background on hover */
+  color: #ffffff; /* Make the text white on hover */
+}
+
+/* 
+  Style for the currently active link.
+  The .active class is automatically added by React Router's <NavLink> component.
+*/
+.sidebar-nav a.active {
+  background-color: #0d6efd; /* A vibrant blue to indicate the current page */
+  color: #ffffff;
+  border-left: 4px solid #0b5ed7; /* A slightly darker blue accent line */
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 1.5rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Main Table Style */
+.employee-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; /* Ensures table doesn't squish too much */
+}
+
+/* Header Styles */
+.employee-table thead tr {
+  background-color: #2c3e50; /* Matches your Navbar color */
+  color: #ffffff;
+  text-align: left;
+}
+
+.employee-table th, 
+.employee-table td {
+  padding: 12px 20px;
+  border-bottom: 1px solid #dddddd;
+}
+
+/* Body Styles */
+.employee-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+  transition: background-color 0.2s;
+}
+
+/* Zebra Striping */
+.employee-table tbody tr:nth-of-type(even) {
+  background-color: #f8f9fa;
+}
+
+/* Hover Effect */
+.employee-table tbody tr:hover {
+  background-color: #e2e6ea;
+}
+
+/* Action Buttons alignment */
+.employee-table .actions {
+  display: flex;
+  align-items: center;
+}
+
+/* Mobile adjustment for the 'No employees' text */
+.employee-table td p {
+  margin: 0;
+  color: #6c757d;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-green {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+.status-red {
+  background-color: #f8d7da;
+  color: #842029;
+}
+
+.status-blue {
+  background-color: #cfe2ff;
+  color: #084298;
+}
+
+.status-yellow {
+  background-color: #fff3cd;
+  color: #664d03;
+}
+
+/* Hide the Sidebar and Print button when actually printing */
+@media print {
+  .sidebar, .btn {
+    display: none !important;
+  }
+  /* Make main content full width */
+  div[style*="flex: 1"] {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+
+.auth-container {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 400px; /* Keeps the form from getting too wide */
+  margin: 2rem auto; /* Centers it horizontally if not in flex container */
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); /* Soft, modern shadow */
+  border: 1px solid #eaeaea;
+}
+
+/* Heading Style */
+.auth-container h2 {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+/* Form Groups */
+.auth-form .form-group {
+  margin-bottom: 1.2rem;
+}
+
+.auth-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #4a5568;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Input Fields */
+.auth-form input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 1rem;
+  color: #2d3748;
+  background-color: #fff;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box; /* Ensures padding doesn't break width */
+}
+
+/* Input Focus State (Blue Glow) */
+.auth-form input:focus {
+  outline: none;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+/* Error Message Box */
+.error-message {
+  background-color: #fff5f5;
+  color: #c53030;
+  padding: 10px;
+  border: 1px solid #feb2b2;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #0d6efd; /* Primary Brand Blue */
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  background-color: #0b5ed7; /* Darker blue on hover */
+}
+
+.submit-btn:active {
+  transform: translateY(1px); /* Slight press effect */
+}
+
+/* "Need an account?" Link area */
+.switch-form-link {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #718096;
+}
+
+.switch-form-link a {
+  color: #0d6efd;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.switch-form-link a:hover {
+  text-decoration: underline;
+}
+
+/* Container to center everything on screen */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f4f6; /* Light gray background */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* The white card */
+.login-box {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 400px; /* specific width for the card */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header styling */
+.login-box h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Form inputs */
+.login-box input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.login-box input:focus {
+  border-color: #3b82f6; /* Blue border on focus */
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Button styling */
+.login-box button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #2563eb; /* Primary Blue */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box button:hover:not(:disabled) {
+  background-color: #1d4ed8; /* Darker blue on hover */
+}
+
+.login-box button:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+}
+
+/* Error message box */
+.error-msg {
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  border: 1px solid #fecaca;
+}
+
+/* Toggle link (Sign up / Login switch) */
+.toggle-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #4b5563;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.toggle-link:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+/* Loader Animation */
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

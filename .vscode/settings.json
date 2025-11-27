@@ -1,0 +1,24 @@
+{
+    "sqltools.connections": [
+        {
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "local dev",
+            "database": "hrms_db",
+            "username": "lakshmi"
+        },
+        {
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "hrms_db",
+            "database": "hrms_group",
+            "username": "lakshmi"
+        }
+    ]
+}

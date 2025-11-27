@@ -16,14 +16,14 @@ body {
 
 
 /* === 2. LAYOUT CONTAINERS === */
-/* Use this wrapper for pages with the navbar (Employees, Teams) */
+
 .main-layout {
   max-width: 960px;
-  margin: 2rem auto; /* Centers the content and adds space from top/bottom */
-  padding: 0 1rem;   /* Adds space on the sides for smaller screens */
+  margin: 2rem auto; 
+  padding: 0 1rem;   
 }
 
-/* Use this wrapper for the Login/Register pages to center the form */
+
 .auth-layout {
   display: flex;
   justify-content: center;
@@ -44,7 +44,7 @@ body {
 }
 
 .navbar .logo a {
-  display: flex; /* This helps align the logo image vertically */
+  display: flex; 
   align-items: center;
   font-size: 1.5rem;
   font-weight: bold;
@@ -54,10 +54,10 @@ body {
 
 /* New style for the logo image */
 .navbar .logo img {
-  height: 40px; /* Adjust the height of your logo as needed */
-  width: auto;  /* Maintains the aspect ratio */
+  height: 40px; 
+  width: auto;  
   margin-right: 10px;
-  color: '#fff' /* Adds space between the logo and any text if you have it */
+  color: '#fff' 
 }
 
 .navbar .links {
@@ -74,7 +74,7 @@ body {
 }
 
 .navbar .links a.active {
-  color: #0d6efd; /* Blue color for the active link */
+  color: #0d6efd; 
 }
 
 .navbar .logout-btn {
@@ -94,7 +94,7 @@ body {
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  margin-top: 1.5rem; /* Space between navbar and dashboard */
+  margin-top: 1.5rem; 
 }
 
 .content-card h2 {
@@ -227,7 +227,7 @@ body {
 
 /* === 8. TEAMS PAGE STYLING === */
 
-/* A generic grid for any card-based layout */
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -253,7 +253,7 @@ body {
 .team-card p {
   color: #6c757d;
   margin-bottom: 1.5rem;
-  flex-grow: 1; /* Pushes assignment controls to the bottom */
+  flex-grow: 1; 
 }
 
 .team-card h5 {
@@ -302,19 +302,19 @@ body {
   align-items: center; /* Vertically center */
   justify-content: center; /* Horizontally center */
   
-  /* Make it fill the viewport below the navbar (assuming navbar is ~65px tall) */
+ 
   height: calc(100vh - 65px); 
   
   /* Background image settings */
   background-size: cover;
   background-position: center;
 
-  position: relative; /* Required for the overlay */
+  position: relative; 
   text-align: center;
-  color: #ffffff; /* All text inside will be white */
+  color: #ffffff; 
 }
 
-/* Dark, semi-transparent overlay to make text readable */
+
 .home-hero-container::before {
   content: '';
   position: absolute;
@@ -327,17 +327,17 @@ body {
 
 /* Container for the text content */
 .hero-content {
-  position: relative; /* Places the content above the overlay */
+  position: relative;
   z-index: 2;
   max-width: 800px;
   padding: 0 2rem;
 }
 
 .hero-content h1 {
-  font-size: 3.5rem; /* Large, bold title */
+  font-size: 3.5rem; 
   font-weight: 700;
   margin-bottom: 1rem;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Adds depth to the text */
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); 
 }
 
 .hero-content p {
@@ -355,12 +355,12 @@ body {
 
 .sidebar {
   /* Sizing and Position */
-  width: 260px; /* A fixed, generous width */
-  flex-shrink: 0; /* Prevents the sidebar from shrinking when the window is narrow */
+  width: 260px; 
+  flex-shrink: 0; 
   
   /* Appearance */
-  background-color: #2c3e50; /* A professional, dark slate blue */
-  color: #ecf0f1; /* Off-white text for high contrast */
+  background-color: #2c3e50; 
+  color: #ecf0f1; 
   
   /* Flexbox layout to structure the header and nav links vertically */
   display: flex;
@@ -371,10 +371,10 @@ body {
 .sidebar-header {
   display: flex;
   align-items: center;
-  gap: 12px; /* Space between the logo and the text */
-  padding: 1.5rem; /* Ample padding around the header content */
-  margin-bottom: 1.5rem; /* Space between the header and the first nav link */
-  border-bottom: 1px solid #34495e; /* A subtle separator line */
+  gap: 12px; 
+  padding: 1.5rem; 
+  margin-bottom: 1.5rem; 
+  border-bottom: 1px solid #34495e; 
 }
 
 .sidebar-header img {
@@ -390,10 +390,10 @@ body {
 
 /* The list that holds all the navigation links */
 .sidebar-nav {
-  list-style: none; /* Removes default bullet points */
+  list-style: none; 
 }
 
-/* Styling for each individual navigation link (<a> tag) */
+
 .sidebar-nav a {
   /* Layout */
   display: flex;
@@ -402,11 +402,11 @@ body {
   padding: 1rem 1.5rem;
   
   /* Appearance & Typography */
-  color: #bdc3c7; /* A lighter, softer grey for inactive links */
+  color: #bdc3c7; 
   text-decoration: none;
   font-weight: 500;
 
-  /* This is the placeholder for the active link indicator */
+ 
   border-left: 4px solid transparent; 
   
   /* Smooth transition for hover effects */
@@ -419,10 +419,7 @@ body {
   color: #ffffff; /* Make the text white on hover */
 }
 
-/* 
-  Style for the currently active link.
-  The .active class is automatically added by React Router's <NavLink> component.
-*/
+
 .sidebar-nav a.active {
   background-color: #0d6efd; /* A vibrant blue to indicate the current page */
   color: #ffffff;
@@ -441,12 +438,12 @@ body {
 .employee-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px; /* Ensures table doesn't squish too much */
+  min-width: 600px; 
 }
 
 /* Header Styles */
 .employee-table thead tr {
-  background-color: #2c3e50; /* Matches your Navbar color */
+  background-color: #2c3e50; 
   color: #ffffff;
   text-align: left;
 }
@@ -531,11 +528,11 @@ body {
 .auth-container {
   background-color: #ffffff;
   width: 100%;
-  max-width: 400px; /* Keeps the form from getting too wide */
-  margin: 2rem auto; /* Centers it horizontally if not in flex container */
+  max-width: 400px; 
+  margin: 2rem auto;
   padding: 2.5rem;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); /* Soft, modern shadow */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); 
   border: 1px solid #eaeaea;
 }
 
@@ -571,7 +568,7 @@ body {
   border: 1px solid #cbd5e0;
   border-radius: 8px;
   transition: all 0.2s ease-in-out;
-  box-sizing: border-box; /* Ensures padding doesn't break width */
+  box-sizing: border-box; 
 }
 
 /* Input Focus State (Blue Glow) */
@@ -597,7 +594,7 @@ body {
 .submit-btn {
   width: 100%;
   padding: 12px;
-  background-color: #0d6efd; /* Primary Brand Blue */
+  background-color: #0d6efd; 
   color: #ffffff;
   font-size: 1.1rem;
   font-weight: 600;
@@ -613,7 +610,7 @@ body {
 }
 
 .submit-btn:active {
-  transform: translateY(1px); /* Slight press effect */
+  transform: translateY(1px);
 }
 
 /* "Need an account?" Link area */
